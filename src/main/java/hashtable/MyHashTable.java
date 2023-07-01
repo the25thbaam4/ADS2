@@ -1,6 +1,6 @@
 package hashtable;
 
-public class MyHashTable implements BasicMethods <Integer, String> {
+public class MyHashTable implements CRDMethods<Integer, String> {
     private int TABLE_SIZE;
     private int size;
     private HashEntry[] table;
@@ -63,7 +63,10 @@ public class MyHashTable implements BasicMethods <Integer, String> {
     public void put(Integer key, String value) {
         if (key == null)
             throw  new IllegalArgumentException("Key can not be Null");
-
+        if (size == TABLE_SIZE){
+            System.out.println("Table is full");
+            return;
+        }
 
 
 
