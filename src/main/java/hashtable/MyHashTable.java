@@ -81,9 +81,9 @@ public class MyHashTable implements CRDMethods<Integer, String> {
     @Override
     public void put(Integer key, String value) {
         if (key == null)
-            throw new IllegalArgumentException("Key can not be Null");
+            throw new IllegalArgumentException(Color.BLUE+"Key can not be Null"+Color.RESET);
         if (size == TABLE_SIZE) {
-            System.out.println("Table is full");
+            System.out.println(Color.BLUE+"Table is full"+Color.RESET);
             return;
         }
 
@@ -132,17 +132,17 @@ public class MyHashTable implements CRDMethods<Integer, String> {
         if (table[firstHash] != null) {
             return table[firstHash].getValue().toString();
         }
-        return "Value not there";
+        return Color.BLUE+"Value not there"+Color.RESET;
     }
 
-    public String findValue(String value){
+    public String findValueInList(String value){
 
             for (HashEntry entry : table) {
                 if (entry != null) {
                     if (entry.getValue() == null && value == null) {
-                        return entry.getValue().toString();
+                        return entry.getValue().toString() + "Name not found";
                     } else if (entry.getValue() != null && entry.getValue().equals(value)) {
-                        return "Name is in the list: "+entry.getValue().toString();
+                        return Color.BLUE+"Name is in the list: "+entry.getValue().toString() + Color.RESET;
                     }
                 }
             }
@@ -152,7 +152,7 @@ public class MyHashTable implements CRDMethods<Integer, String> {
 
     @Override
     public void displayTable() {
-       System.out.println("Hash-Table");
+       System.out.println(Color.GREEN_UNDERLINED+"Hash-Table"+Color.RESET);
 
         for (int i = 0 ; i < TABLE_SIZE; i++){
             if(table[i] != null) {
@@ -210,8 +210,10 @@ public class MyHashTable implements CRDMethods<Integer, String> {
                     "2. Add an Entry" + NEWLINE +
                     "3. Remove an entry" + NEWLINE +
                     "4. Find an Entry" + NEWLINE +
-                    "5. Display size" + NEWLINE
-                    + Color.RED_BOLD +
+                    "5. Display size" + NEWLINE +
+                    "6. Add the CSV File" + NEWLINE +
+                    "7. Display all elements" +NEWLINE +
+                    "8. Check if name is in the Hash-Table"+NEWLINE+ NEWLINE + Color.RED_BOLD +
                     "0. Quit Edit Menu" + Color.RESET);
 
             try {
@@ -241,25 +243,25 @@ public class MyHashTable implements CRDMethods<Integer, String> {
                         remove(sc.nextInt());
                     }
                     case 4 -> {
-                        System.out.println("Do you want to search by Key or Value?" +
-                                NEWLINE + "1. Key" +
-                                NEWLINE + "2. Value");
-                        int searchChoice = sc.nextInt();
-                        if (searchChoice == 1) {
+                        System.out.println("Do you want to search by Key");
                             System.out.println( find(sc.nextInt()));
-                        }
-                        if (searchChoice == 2) {
-                            System.out.println(findValue(sc.nextLine()));
-                        }
 
                     }
                     case 5 -> System.out.println(Color.BLUE+"Size: " + getSize() + Color.RESET);
 
                     case 6 -> {
-                        System.out.println("Add the CSV file....");
-                        String filePath = sc.nextLine();
+                        System.out.println("Adding the CSV file........" );
+                        String filePath = "C:\\Users\\Ace\\IdeaProjects\\ADS2\\src\\main\\java\\hashtable\\names.csv";
                         String delimiter = ",";
                         addCSV(filePath, delimiter);
+                    }
+                    case 7 -> displayTable();
+                    case 8 ->{
+                        System.out.println("Enter The name: ");
+                     String nameToLookFor = sc.next();
+
+                        System.out.println( findValueInList(nameToLookFor));
+
                     }
                 }
 
