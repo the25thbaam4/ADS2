@@ -1,29 +1,38 @@
 package hashtable;
 
-public class HashEntry {
-    private String value;
-    private int key;
+public class HashEntry <K, V>{
+    private V value;
+    private K key;
     private boolean deleted;
 
-    public String getValue() {
+
+    public V getValue() {
         return value;
     }
 
-    public int getKey() {
+    public K getKey() {
         return key;
     }
-
     public boolean isDeleted() {
         return deleted;
     }
 
-    public void delete(){
-        deleted = true;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
-    public HashEntry(String value, int key){
+    public void setValue(V value) {
+        this.value = value;
+    }
+
+    public void setKey(K key) {
+        this.key = key;
+    }
+
+
+    public HashEntry(K key, V value){
         this.key = key;
         this.value = value;
-        deleted = false;
+        this.deleted = false;
 
     }
 }
