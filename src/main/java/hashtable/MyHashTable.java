@@ -251,7 +251,7 @@ public class MyHashTable implements CRDMethods<Integer, String> {
 
                     case 6 -> {
                         System.out.println("Adding the CSV file........" );
-                        String filePath = "C:\\Users\\Ace\\IdeaProjects\\ADS2\\src\\main\\java\\hashtable\\names.csv";
+                        String filePath = "src/main/resources/names.csv";
                         String delimiter = ",";
                         addCSV(filePath, delimiter);
                     }
